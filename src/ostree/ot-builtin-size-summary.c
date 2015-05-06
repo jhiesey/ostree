@@ -30,12 +30,11 @@
 gboolean opt_detailed;
 
 static GOptionEntry options[] = {
-  { "detailed", 'd', 0, G_OPTION_ARG_NONE, &opt_detailed, "Emit detailed summary information", NULL },
   { NULL }
 };
 
 gboolean
-ostree_builtin_summary2 (int argc, char **argv, GCancellable *cancellable, GError **error)
+ostree_builtin_size_summary (int argc, char **argv, GCancellable *cancellable, GError **error)
 {
   GOptionContext *context;
   OstreeRepo *repo;
@@ -107,7 +106,7 @@ ostree_builtin_summary2 (int argc, char **argv, GCancellable *cancellable, GErro
       goto out;
     }
 
-  if (ostree_repo_get_commit_sizes (repo, refspec,
+  if (ostree_repo_get_commit_sizes (repo, revision,
                                           &new_archived,
                                           &new_unpacked,
                                           &fetch_needed,
